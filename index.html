@@ -68,3 +68,113 @@ border: 1px solid rgba(54, 108, 221, 0.3);
   <script src="juego.js"></script>
 </body>
 </html>
+<script></script>  const preguntasFaciles = [
+      { pregunta: "¿Cuánto es 2 + 2?", respuesta: "4" },
+      { pregunta: "¿Cuánto es 7 - 3?", respuesta: "4" },
+      { pregunta: "¿Cuánto es 5 x 3?", respuesta: "15" }
+    ];
+
+    const preguntasMedias = [
+      { pregunta: "¿Cuánto es 12 / 3?", respuesta: "4" },
+      { pregunta: "¿Cuánto es 8 + 6?", respuesta: "14" },
+      { pregunta: "¿Cuánto es 9 - 5?", respuesta: "4" }
+    ];
+
+    const preguntasDificiles = [
+      { pregunta: "¿Cuánto es 10 x 8?", respuesta: "80" },
+      { pregunta: "¿Cuánto es 18 / 3?", respuesta: "6" },
+      { pregunta: "¿Cuánto es 15 + 17?", respuesta: "32" }
+    ];
+
+    // Configurar voces
+    const vozCorrecta = new SpeechSynthesisUtterance("¡Respuesta correcta!");
+    const vozIncorrecta = new SpeechSynthesisUtterance("Respuesta incorrecta. Inténtalo de nuevo.");
+
+    // Variables del juego
+    let nivelActual = 0;
+    let preguntasActuales = [];
+
+    // Función para seleccionar preguntas según la dificultad
+    function seleccionarPreguntas(dificultad) {
+      switch (dificultad) {
+        case "facil":
+          preguntasActuales = preguntasFaciles;
+          break;
+        case "medio":
+          preguntasActuales = preguntasMedias;
+          break;
+        case "dificil":
+          preguntasActuales = preguntasDificiles;
+break;
+}
+}
+
+
+function hacerPregunta(nivel) {
+  if (nivel >= preguntasActuales.length) {
+    mostrarMensaje("¡Has completado todos los niveles!");
+    return;
+  }
+
+  const pregunta = preguntasActuales[nivel];
+  mostrarPregunta(pregunta.pregunta);
+
+  const campoRespuesta = document.getElementById("respuesta");
+  campoRespuesta.value = "";
+  campoRespuesta.focus();
+
+  const btnEnviar = document.getElementById("btn-enviar");
+  btnEnviar.onclick = () => {
+    const respuestaUsuario = campoRespuesta.value.trim();
+    if (respuestaUsuario.toLowerCase() === pregunta.respuesta.toLowerCase()) {
+      mostrarMensaje("¡Respuesta correcta!", true);
+      vozCorrecta.lang = "es-ES";
+      window.speechSynthesis.speak(vozCorrecta);
+      document.body.classList.add("correcto");
+      setTimeout(() => {
+        document.body.classList.remove("correcto");
+      }, 1000);
+      nivelActual++;
+      hacerPregunta(nivelActual);
+    } else {
+      mostrarMensaje("Respuesta incorrecta. Inténtalo de nuevo.", false);
+      vozIncorrecta.lang = "es-ES";
+      window.speechSynthesis.speak(vozIncorrecta);
+      document.body.classList.add("incorrecto");
+      setTimeout(() => {
+        document.body.classList.remove("incorrecto");
+      }, 1000);
+    }
+  };
+}
+
+function mostrarPregunta(pregunta) {
+  const campoPregunta = document.getElementById("pregunta");
+  campoPregunta.textContent = pregunta;
+}
+
+// Función para mostrar mensajes en el campo de mensaje
+function mostrarMensaje(mensaje, esCorrecto) {
+  const campoMensaje = document.getElementById("mensaje");
+  campoMensaje.textContent = mensaje;
+  campoMensaje.style.color = esCorrecto ? "green" : "red";
+}
+
+// Función para configurar la dificultad del juego
+function configurarDificultad(dificultad) {
+  nivelActual = 0;
+  seleccionarPreguntas(dificultad);
+  hacerPregunta(nivelActual);
+}
+
+// Asignar eventos a los botones de dificultad
+const btnFacil = document.getElementById("btn-facil");
+const btnMedio = document.getElementById("btn-medio");
+const btnDificil = document.getElementById("btn-dificil");
+
+btnFacil.onclick = () => configurarDificultad("facil");
+btnMedio.onclick = () => configurarDificultad("medio");
+btnDificil.onclick = () => configurarDificultad("dificil");
+
+// Comenzar el juego en la dificultad "facil" por defecto
+configurarDificultad("facil");
