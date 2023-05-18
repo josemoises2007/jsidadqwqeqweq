@@ -6,13 +6,14 @@
     font-family: 'Josefin Sans', sans-serif;
     }
 
-.multi{
+.multi{    left: 159px;
+
 -webkit-animation: rotate-scale-up 0.65s linear  infinite;
 	        animation: rotate-scale-up 5.65s  linear infinite;
 
 width:100px;
 height:90px;
-posiçao:relative;
+position:relative;
 top:30%;
 bottom:50%;
 	opacity : 0.5;
