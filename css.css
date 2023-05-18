@@ -7,11 +7,11 @@
     }
 
 .multi{
--webkit-animation: rotate-scale-up 0.65s linear infinite;
-	        animation: rotate-scale-up 0.65s linear infinite;
+-webkit-animation: rotate-scale-up 0.65s  infinite;
+	        animation: rotate-scale-up 0.65s  infinite;
 
-width:40px;
-height:60px;
+width:100px;
+height:90px;
 posiçao:relative;
 top:30%;
 bottom:50%;
