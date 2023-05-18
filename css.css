@@ -7,14 +7,16 @@
     }
 
 .multi{
--webkit-animation: rotate-scale-up 0.65s linear both;
-	        animation: rotate-scale-up 0.65s linear both;
+-webkit-animation: rotate-scale-up 0.65s linear infinite;
+	        animation: rotate-scale-up 0.65s linear infinite;
 
 width:40px;
 height:60px;
-posiçao:relativa;
+posiçao:relative;
 top:30%;
 bottom:50%;
+	
+	opacity:0.9;
 }
 @-webkit-keyframes rotate-scale-up {
   0% {
