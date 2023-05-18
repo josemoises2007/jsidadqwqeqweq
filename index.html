@@ -1,19 +1,19 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Juego de Niveles</title>
+  <title>calculo matematico</title>
  <link rel="stylesheet" type="text/css" href="css.css" />
 <body>
 	
 	<img src="download-removebg-preview.png" class="multi">
 	<img src="[removal.ai]_tmp-6466976d5c5f7.png" class="resta">
   <div class="container">
-    <h1>Juego de Niveles</h1>
+    <h1>Calculo matemático</h1>
     <div class="question" id="pregunta"></div>
   
 	<div class="input-container">	  <input  type="text" id="respuesta" placeholder="Respuesta">
 		</div>
-	 <br> <button id ="btn-enviar">enviar respuest</button></br>
+	 <br> <button id ="btn-enviar">enviar resposta</button></br>
     <div id="mensaje"></div>
     <div>
       <button id="btn-facil" class="myButton">Fácil</button>
@@ -27,26 +27,27 @@
 </body>
 </html>
 <script>  const preguntasFaciles = [
-      { pregunta: "¿Cuánto es 2 + 2?", respuesta: "4" },
-      { pregunta: "¿Cuánto es 7 - 3?", respuesta: "4" },
-      { pregunta: "¿Cuánto es 5 x 3?", respuesta: "15" }
+      { pregunta: "Quanto é 2 + 2?", respuesta: "4" },
+      { pregunta: "Complete a sequência: 5, 10, 15, __.", respuesta: "20" },
+      { pregunta: "Se eu tenho 3 maçãs e dou uma para meu amigo, quantas maçãs eu tenho agora?", respuesta: "2" },
+		{pregunta:"Quantas faces tem um cubo?", respuesta:"6" }
     ];
 
     const preguntasMedias = [
-      { pregunta: "¿Cuánto es 12 / 3?", respuesta: "4" },
-      { pregunta: "¿Cuánto es 8 + 6?", respuesta: "14" },
-      { pregunta: "¿Cuánto es 9 - 5?", respuesta: "4" }
+      { pregunta: "Qual é a raiz quadrada de 25?", respuesta: "5" },
+      { pregunta: "Quanto é 3 x 4 + 5?", respuesta: "17" },
+      { pregunta: "Qual é o resultado de 20 dividido por 4 mais 2?", respuesta: "10" }
     ];
 
     const preguntasDificiles = [
-      { pregunta: "¿Cuánto es 10 x 8?", respuesta: "80" },
-      { pregunta: "¿Cuánto es 18 / 3?", respuesta: "6" },
-      { pregunta: "¿Cuánto es 15 + 17?", respuesta: "32" }
+      { pregunta: "Resolva a equação: 2x + 5 = 13.", respuesta: "4" },
+      { pregunta: "Calcule o perímetro de um triângulo com lados medindo 6 cm, 8 cm e 10 cm.", respuesta: "24" },
+      { pregunta: "quanto é  0,1 + 3", respuesta: "3,1" }
     ];
 
     // Configurar voces
-    const vozCorrecta = new SpeechSynthesisUtterance("¡Respuesta correcta!");
-    const vozIncorrecta = new SpeechSynthesisUtterance("Respuesta incorrecta. Inténtalo de nuevo.");
+    const vozCorrecta = new SpeechSynthesisUtterance("¡Resposta correta!");
+    const vozIncorrecta = new SpeechSynthesisUtterance("Resposta incorreta, tente de novo");
 
     // Variables del juego
     let nivelActual = 0;
@@ -70,7 +71,7 @@ break;
 
 function hacerPregunta(nivel) {
   if (nivel >= preguntasActuales.length) {
-    mostrarMensaje("¡Has completado todos los niveles!");
+    mostrarMensaje("¡voce completou todos os niveis!");
     return;
   }
 
@@ -86,7 +87,7 @@ function hacerPregunta(nivel) {
     const respuestaUsuario = campoRespuesta.value.trim();
     if (respuestaUsuario.toLowerCase() === pregunta.respuesta.toLowerCase()) {
       mostrarMensaje("¡Respuesta correcta!", true);
-      vozCorrecta.lang = "es-ES";
+      vozCorrecta.lang = "pt-br";
       window.speechSynthesis.speak(vozCorrecta);
       document.body.classList.add("correcto");
       setTimeout(() => {
@@ -95,8 +96,8 @@ function hacerPregunta(nivel) {
       nivelActual++;
       hacerPregunta(nivelActual);
     } else {
-      mostrarMensaje("Respuesta incorrecta. Inténtalo de nuevo.", false);
-      vozIncorrecta.lang = "es-ES";
+      mostrarMensaje("Resposta incorreta tente de novo", false);
+      vozIncorrecta.lang = "pt-br";
       window.speechSynthesis.speak(vozIncorrecta);
       document.body.classList.add("incorrecto");
       setTimeout(() => {
