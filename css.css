@@ -13,8 +13,8 @@
     position: relative;
     top: 60%;
     bottom: 50%;
-    -webkit-animation: bounce-out-top 1.5s linear infinite;
-	        animation: bounce-out-top 1.5s linear infinite;
+    -webkit-animation: bounce-out-top 4.5s linear infinite;
+	        animation: bounce-out-top 4.5s linear infinite;
 }
 @-webkit-keyframes bounce-out-top {
   0% {
