@@ -7,8 +7,8 @@
     }
 
 .multi{
--webkit-animation: rotate-scale-up 0.65s  infinite;
-	        animation: rotate-scale-up 0.65s  infinite;
+-webkit-animation: rotate-scale-up 0.65s linear  infinite;
+	        animation: rotate-scale-up 0.65s  linear infinite;
 
 width:100px;
 height:90px;
